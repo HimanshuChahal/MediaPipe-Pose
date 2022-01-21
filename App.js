@@ -5,6 +5,21 @@ import Canvas from 'react-native-canvas'
 import { drawConnectors, drawLandmarks } from '@mediapipe/drawing_utils'
 import { Pose } from '@mediapipe/pose'
 
+const pose = new Pose({
+  locateFile: (file) => {
+    return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
+  }
+})
+
+pose.setOptions({
+  modelComplexity: 1,
+  smoothLandmarks: true,
+  enableSegmentation: true,
+  smoothSegmentation: true,
+  minDetectionConfidence: 0.5,
+  minTrackingConfidence: 0.5
+})
+
 export default function App() {
 
   const [ permission, setPermission ] = useState(null)
@@ -30,25 +45,10 @@ export default function App() {
 
   useEffect(() => {
 
-    // const pose = new Pose({
-    //     locateFile: (file) => {
-    //       return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
-    //     }
-    // })
-    
-    // pose.setOptions({
-    //   modelComplexity: 1,
-    //   smoothLandmarks: true,
-    //   enableSegmentation: true,
-    //   smoothSegmentation: true,
-    //   minDetectionConfidence: 0.5,
-    //   minTrackingConfidence: 0.5
-    // })
-
-    // const canvas = canvasRef.current
-    // const context = canvas.getContext('2d')
-    // context.fillStyle = 'red'
-    // context.fillRect(100, 100, canvasRef.current.width, canvasRef.current.height)
+    const canvas = canvasRef.current
+    const context = canvas.getContext('2d')
+    context.fillStyle = 'red'
+    context.fillRect(100, 100, canvasRef.current.width, canvasRef.current.height)
 
   }, [])
 
@@ -85,5 +85,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  },
+  }
 });
