@@ -5,20 +5,21 @@ import Canvas from 'react-native-canvas'
 import { drawConnectors, drawLandmarks } from '@mediapipe/drawing_utils'
 import { Pose } from '@mediapipe/pose'
 
-const pose = new Pose({
-  locateFile: (file) => {
-    return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
-  }
-})
+// const pose = new Pose({
+//   locateFile: (file) => {
+//     return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
+//   }
+// })
 
-pose.setOptions({
-  modelComplexity: 1,
-  smoothLandmarks: true,
-  enableSegmentation: true,
-  smoothSegmentation: true,
-  minDetectionConfidence: 0.5,
-  minTrackingConfidence: 0.5
-})
+// pose.setOptions({
+//   modelComplexity: 1,
+//   smoothLandmarks: true,
+//   enableSegmentation: true,
+//   smoothSegmentation: true,
+//   minDetectionConfidence: 0.5,
+//   minTrackingConfidence: 0.5,
+//   selfieMode: true
+// })
 
 export default function App() {
 
@@ -27,8 +28,6 @@ export default function App() {
   const cameraRef = useRef(null)
 
   const canvasRef = useRef(null)
-
-  var camera = null
 
   const { width, height } = useWindowDimensions()
 
@@ -46,11 +45,13 @@ export default function App() {
   useEffect(() => {
 
     const canvas = canvasRef.current
-    const context = canvas.getContext('2d')
-    context.fillStyle = 'red'
-    context.fillRect(100, 100, canvasRef.current.width, canvasRef.current.height)
+    // const context = canvas.getContext('2d')
+    // context.fillStyle = 'red'
+    // context.fillRect(100, 100, canvasRef.current.width, canvasRef.current.height)
 
   }, [])
+
+  console.log(Pose)
 
   if(permission === null)
   {
